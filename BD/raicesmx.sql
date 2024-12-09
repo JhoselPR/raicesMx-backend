@@ -9,12 +9,13 @@ CREATE TABLE user (
     password VARCHAR(100) NOT NULL,
     birthdate DATE NOT NULL,
     address VARCHAR(256) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
     role ENUM('admin', 'user') NOT NULL DEFAULT 'user'
 );
 
 CREATE TABLE subscription (
     subscription_id INT AUTO_INCREMENT PRIMARY KEY,
-    subscription_type VARCHAR(50) NOT NULL,
+    subscription_type ENUM('Raíces Basic', 'Raíces Gold', 'Raíces Premium') NOT NULL,
     benefits VARCHAR(256) NOT NULL,
     price INT DEFAULT 0
 );
@@ -44,7 +45,8 @@ CREATE TABLE user_subscription (
         ON DELETE CASCADE,
     CONSTRAINT fk_user_subscription_subscription FOREIGN KEY (subscription_id)
         REFERENCES subscription (subscription_id)
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT unique_user_subscription UNIQUE (user_id)
 );
 
 CREATE TABLE product (
@@ -55,7 +57,8 @@ CREATE TABLE product (
     meal_time VARCHAR(20) NOT NULL,
     image BLOB NOT NULL,
     price INT NOT NULL,
-    extras VARCHAR(50)
+    extras VARCHAR(50),
+    stock INT NOT NULL
 );
 
 CREATE TABLE order_has_product (
