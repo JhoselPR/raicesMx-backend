@@ -82,15 +82,15 @@ public class Product {
 	@Setter
 	private int stock;
 
-	/*@OneToMany(mappedBy = "order_has_product", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	@Getter
 	@Setter
 	private Set<OrderHasProduct> order_has_product = new HashSet<>();
 	
-	@OneToMany(mappedBy = "diet_has_product", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	@Getter
 	@Setter
-	private Set<DietHasProduct> diet_has_product = new HashSet<>();*/
+	private Set<DietHasProduct> diet_has_product = new HashSet<>();
 }

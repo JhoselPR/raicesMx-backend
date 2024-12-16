@@ -54,7 +54,7 @@ public class UserSubscription {
 	@JsonBackReference
 	@Getter
 	@Setter
-	private User user_id_fk;
+	private User user_id;
 	
 	@ManyToOne
 	@JoinColumn(name="subscription_id", nullable = false)
@@ -62,5 +62,5 @@ public class UserSubscription {
 	@JsonBackReference
 	@Getter
 	@Setter
-	private Subscription subscription_id_fk;
+	private Subscription subscription_id;
 }
