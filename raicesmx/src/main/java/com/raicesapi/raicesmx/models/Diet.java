@@ -46,10 +46,10 @@ public class Diet {
 	@Setter
 	private String additional_info;
 	
-	/*@OneToMany(mappedBy = "diet_has_product", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "diet", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	@Getter
 	@Setter
-	private Set<DietHasProduct> diet_has_product = new HashSet<>();*/
+	private Set<DietHasProduct> diet_has_product = new HashSet<>();
 	
 }

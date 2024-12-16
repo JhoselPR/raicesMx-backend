@@ -37,56 +37,56 @@ public class Orders {
 	@Getter
 	@Setter
 	private Integer order_id;
-	
+
 	@Column(name = "date_time")
 	@JsonProperty("date_time")
 	@Getter
 	@Setter
 	private String date_time;
-	
+
 	@Column(name = "notes")
 	@JsonProperty("notes")
 	@Getter
 	@Setter
 	private String notes;
-	
+
 	@Column(name = "quantity")
 	@JsonProperty("quantity")
 	@Getter
 	@Setter
 	private int quantity;
-	
+
 	@Column(name = "status")
 	@JsonProperty("status")
 	@Getter
 	@Setter
 	private String status;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id_fk", nullable = false)
+	@JoinColumn(name = "user_id_fk", nullable = false)
 	@JsonProperty("user_id_fk")
 	@JsonBackReference
 	@Getter
 	@Setter
 	private User user_id_fk;
-	
-	/*@OneToMany(mappedBy = "order_has_product", fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	@Getter
 	@Setter
-	private Set<OrderHasProduct> order_has_product = new HashSet<>();*/
-	
-	 @JsonGetter("user_name")
-	    public String getUserName() {
-	        return user_id_fk.getFirst_name() + " " + user_id_fk.getLast_name();
-	    }
+	private Set<OrderHasProduct> order_has_product = new HashSet<>();
 
-	    @JsonGetter("user_address")
-	    public String getUserAddress() {
-	        return user_id_fk.getAddress();
-	    }
-	    @JsonGetter("user_email")
-	    public String getEmail() {
-	        return user_id_fk.getEmail();
-	    }
+	@JsonGetter("user_name")
+	public String getUserName() {
+		return user_id_fk.getFirst_name() + " " + user_id_fk.getLast_name();
+	}
+
+	@JsonGetter("user_address")
+	public String getUserAddress() {
+		return user_id_fk.getAddress();
+	}
+	/*
+	 * @JsonGetter("user_email") public String getEmail() { return
+	 * user_id_fk.getEmail(); }
+	 */
 }
