@@ -4,13 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.raicesapi.raicesmx.models.Product;
 import com.raicesapi.raicesmx.service.ProductService;
@@ -39,7 +33,24 @@ public class ProductController {
 	}
 
 	// PUT
-	///////////////////
+	@PutMapping("/{id}")
+	public ResponseEntity<Product> updateProduct(@PathVariable("id") Integer id, @RequestBody Product product) {
+		return productService.findProductById(id).map(existingProduct -> {
+			// Actualiza los campos del producto existente con los nuevos datos
+			existingProduct.setName(product.getName());
+			existingProduct.setDescription(product.getDescription());
+			existingProduct.setIngredients(product.getIngredients());
+			existingProduct.setMeal_time(product.getMeal_time());
+			existingProduct.setImage(product.getImage());
+			existingProduct.setPrice(product.getPrice());
+			existingProduct.setExtras(product.getExtras());
+			existingProduct.setStock(product.getStock());
+
+			// Guarda el producto actualizado
+			Product updateProduct = productService.saveProduct(existingProduct);
+			return ResponseEntity.ok(updateProduct);
+		}).orElse(ResponseEntity.notFound().build()); // Si no se encuentra el producto, retorna 404
+	}
 
 	// DELETE
 	@DeleteMapping("/{id}")

@@ -75,7 +75,13 @@ public class Product {
 	@Getter
 	@Setter
 	private String extras;
-	
+
+	@Column(name = "stock")
+	@JsonProperty("stock")
+	@Getter
+	@Setter
+	private int stock;
+
 	/*@OneToMany(mappedBy = "order_has_product", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	@Getter
