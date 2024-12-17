@@ -55,7 +55,7 @@ CREATE TABLE product (
     description VARCHAR(256) NOT NULL,
     ingredients VARCHAR(256) NOT NULL,
     meal_time VARCHAR(20) NOT NULL,
-    image BLOB NOT NULL,
+    image VARCHAR(256) NOT NULL,
     price INT NOT NULL,
     extras VARCHAR(50),
     stock INT NOT NULL

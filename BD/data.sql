@@ -32,11 +32,11 @@ INSERT INTO user_subscription (user_id, subscription_id, start_date, end_date, i
 
 -- Tabla product
 INSERT INTO product (name, description, ingredients, meal_time, image, price, extras, stock) VALUES
-('Ensalada César', 'Ensalada fresca con aderezo César.', 'Lechuga, crutones, parmesano, pollo', 'comida', 'image1.jpg', 120, 'Pollo extra', 10),
-('Sándwich Vegano', 'Sándwich saludable con ingredientes veganos.', 'Pan integral, aguacate, hummus, espinaca', 'desayuno', 'image2.jpg', 80, NULL, 10),
-('Wrap de Pollo', 'Wrap relleno de pollo y vegetales.', 'Tortilla, pollo, lechuga, tomate', 'comida', 'image3.jpg', 150, 'Aderezo extra', 10),
-('Smoothie Tropical', 'Bebida refrescante de frutas tropicales.', 'Mango, piña, coco, plátano', 'desayuno', 'image4.jpg', 60, NULL, 10),
-('Pasta Primavera', 'Pasta ligera con vegetales frescos.', 'Pasta, brócoli, zanahoria, calabacín', 'cena', 'image5.jpg', 180, 'Queso parmesano', 10);
+('Ensalada César', 'Ensalada fresca con aderezo César.', 'Lechuga, crutones, parmesano, pollo', 'comida', 'https://raicesmx-images.s3.us-east-1.amazonaws.com/Ejemplo.webp', 120, 'Pollo extra', 10),
+('Sándwich Vegano', 'Sándwich saludable con ingredientes veganos.', 'Pan integral, aguacate, hummus, espinaca', 'desayuno', 'https://raicesmx-images.s3.us-east-1.amazonaws.com/Ejemplo.webp', 80, NULL, 10),
+('Wrap de Pollo', 'Wrap relleno de pollo y vegetales.', 'Tortilla, pollo, lechuga, tomate', 'comida', 'https://raicesmx-images.s3.us-east-1.amazonaws.com/Ejemplo.webp', 150, 'Aderezo extra', 10),
+('Smoothie Tropical', 'Bebida refrescante de frutas tropicales.', 'Mango, piña, coco, plátano', 'desayuno', 'https://raicesmx-images.s3.us-east-1.amazonaws.com/Ejemplo.webp', 60, NULL, 10),
+('Pasta Primavera', 'Pasta ligera con vegetales frescos.', 'Pasta, brócoli, zanahoria, calabacín', 'cena', 'https://raicesmx-images.s3.us-east-1.amazonaws.com/Ejemplo.webp', 180, 'Queso parmesano', 10);
 
 -- Tabla order_has_product
 INSERT INTO order_has_product (order_id_fk, product_id_fk, quantity) VALUES
