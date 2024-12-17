@@ -62,7 +62,7 @@ public class Product {
 	@JsonProperty("image")
 	@Getter
 	@Setter
-	private byte[] image;
+	private String image;
 	
 	@Column(name = "price")
 	@JsonProperty("price")
@@ -83,13 +83,13 @@ public class Product {
 	private int stock;
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("product-orders")
 	@Getter
 	@Setter
 	private Set<OrderHasProduct> order_has_product = new HashSet<>();
 	
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("product-diet")
 	@Getter
 	@Setter
 	private Set<DietHasProduct> diet_has_product = new HashSet<>();

@@ -33,7 +33,7 @@ public class OrderHasProduct {
 	@ManyToOne
 	@JoinColumn(name="order_id_fk", nullable = false, insertable = false, updatable = false)
 	@JsonProperty("order_id_fk")
-	@JsonBackReference
+	@JsonBackReference("orders-product")
 	@Getter
 	@Setter
 	private Orders orders;
@@ -41,7 +41,7 @@ public class OrderHasProduct {
 	@ManyToOne
 	@JoinColumn(name="product_id_fk", nullable = false, insertable = false, updatable = false)
 	@JsonProperty("product_id_fk")
-	@JsonBackReference
+	@JsonBackReference("product-orders")
 	@Getter
 	@Setter
 	private Product product;

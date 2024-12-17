@@ -53,7 +53,7 @@ public class Subscription {
 	private int price;
 	
 	@OneToMany(mappedBy = "subscription_id", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("subscription-user")
 	@Getter
 	@Setter
 	private Set<UserSubscription> user_subscription = new HashSet<>();

@@ -82,13 +82,13 @@ public class User {
 	private String role;
 	
 	@OneToMany(mappedBy = "user_id_fk", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("user-orders")
 	@Getter
 	@Setter
 	private Set<Orders> orders = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user_id", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("user-subscription")
 	@Getter
 	@Setter
 	private Set<UserSubscription> user_subscription = new HashSet<>();

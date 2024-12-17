@@ -65,13 +65,13 @@ public class Orders {
 	@ManyToOne
 	@JoinColumn(name = "user_id_fk", nullable = false)
 	@JsonProperty("user_id_fk")
-	@JsonBackReference
+	@JsonBackReference("user-orders")
 	@Getter
 	@Setter
 	private User user_id_fk;
 
 	@OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("orders-product")
 	@Getter
 	@Setter
 	private Set<OrderHasProduct> order_has_product = new HashSet<>();

@@ -47,7 +47,7 @@ public class Diet {
 	private String additional_info;
 	
 	@OneToMany(mappedBy = "diet", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("diet-product")
 	@Getter
 	@Setter
 	private Set<DietHasProduct> diet_has_product = new HashSet<>();

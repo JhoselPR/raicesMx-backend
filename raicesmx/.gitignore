@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar archivos de configuración de AWS
+application.properties
+*.env

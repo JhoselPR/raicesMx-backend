@@ -1,19 +1,35 @@
 package com.raicesapi.raicesmx.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.raicesapi.raicesmx.models.Product;
 import com.raicesapi.raicesmx.service.ProductService;
+import com.raicesapi.raicesmx.service.S3Service;
+
 
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+    private S3Service s3Service;
 
 	// Get
 	@GetMapping
@@ -25,6 +41,18 @@ public class ProductController {
 	public ResponseEntity<Product> getProductById(@PathVariable("id") Integer id) {
 		return productService.findProductById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
+
+	// POST - Subir imagen a S3 y obtener URL
+    @PostMapping("/upload")
+    public String uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+        File tempFile = File.createTempFile("image", file.getOriginalFilename());
+        file.transferTo(tempFile);
+        String s3Key = "product-images/" + file.getOriginalFilename();
+        s3Service.uploadFile(s3Key, tempFile);
+        String fileUrl = s3Service.getFileUrl(s3Key);
+
+        return fileUrl;
+    }
 
 	// Post
 	@PostMapping
@@ -49,8 +77,9 @@ public class ProductController {
 			// Guarda el producto actualizado
 			Product updateProduct = productService.saveProduct(existingProduct);
 			return ResponseEntity.ok(updateProduct);
-		}).orElse(ResponseEntity.notFound().build()); // Si no se encuentra el producto, retorna 404
+		}).orElse(ResponseEntity.notFound().build()); // 404
 	}
+
 
 	// DELETE
 	@DeleteMapping("/{id}")

@@ -26,7 +26,7 @@ public class DietHasProduct {
 	@ManyToOne
 	@JoinColumn(name="diet_id_fk", nullable = false, insertable = false, updatable = false)
 	@JsonProperty("diet_id_fk")
-	@JsonBackReference
+	@JsonBackReference("diet-product")
 	@Getter
 	@Setter
 	private Diet diet;
@@ -34,7 +34,7 @@ public class DietHasProduct {
 	@ManyToOne
 	@JoinColumn(name="product_id_fk", nullable = false, insertable = false, updatable = false)
 	@JsonProperty("product_id_fk")
-	@JsonBackReference
+	@JsonBackReference("product-diet")
 	@Getter
 	@Setter
 	private Product product;
